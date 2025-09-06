@@ -5,11 +5,17 @@ using UnityEngine;
 public class BarrelManager : MonoBehaviour
 {
     public GameObject barrelPrefab;
-    public int barrelCount = 500;
+    public int barrelCount = 5;
     private List<GameObject> allBarrels = new List<GameObject>();
+    [SerializeField] List<Transform> spawnPoints = new List<Transform>();
 
     void Start()
     {
+        if (spawnPoints.Count == 0) return;
+        if(barrelCount > spawnPoints.Count)
+        {
+            barrelCount = spawnPoints.Count;
+        }
         bool isPrefabWithRB = barrelPrefab.GetComponent<Rigidbody>() != null;
         if(!isPrefabWithRB)
         {
@@ -17,10 +23,10 @@ public class BarrelManager : MonoBehaviour
         }
         for (int i = 0; i < barrelCount; i++)
         {
-            GameObject barrel = Instantiate(barrelPrefab);
-            barrel.transform.position = new Vector3(Random.Range(-50f, 50f), Random.Range(0f, 10f), Random.Range(-50f, 50f));
+            GameObject barrel = Instantiate(barrelPrefab, spawnPoints[i].position, Quaternion.identity);
+            //barrel.transform.position = new Vector3(Random.Range(-50f, 50f), Random.Range(0f, 10f), Random.Range(-50f, 50f));
             barrel.name = "Barrel_" + i;
-            barrel.GetComponent<Rigidbody>().mass = Random.Range(0.5f, 5f);
+            barrel.GetComponent<Rigidbody>().mass = Random.Range(0.5f, 0.6f);
             //barrel.AddComponent<BarrelBehavior>();
             allBarrels.Add(barrel);
         }
