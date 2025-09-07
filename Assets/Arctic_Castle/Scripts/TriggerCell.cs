@@ -38,6 +38,4 @@ public class TriggerCell : MonoBehaviour {
 		objectsOutsideCell.SetActive (true);
 		Debug.Log("smth");
     }
-
-
 }
