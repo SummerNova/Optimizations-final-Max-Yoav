@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting.Dependencies.Sqlite;
 using UnityEngine;
 
 public class BarrelManager : MonoBehaviour
@@ -12,7 +13,8 @@ public class BarrelManager : MonoBehaviour
     void Start()
     {
         if (spawnPoints.Count == 0) return;
-        if(barrelCount > spawnPoints.Count)
+        if(barrelCount > 10) barrelCount = 10;
+        if (barrelCount > spawnPoints.Count)
         {
             barrelCount = spawnPoints.Count;
         }
