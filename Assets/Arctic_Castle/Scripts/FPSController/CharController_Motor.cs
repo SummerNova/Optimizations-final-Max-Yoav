@@ -5,12 +5,12 @@ using UnityEngine;
 public class CharController_Motor : MonoBehaviour
 {
 
-    public float speed = 2f;
-    public float sensitivity = 10.0f;
+    public PlayerStats stats;
     CharacterController character;
     public GameObject cam;
     float moveFB, moveLR;
     float rotX, rotY;
+    float sensitivity;
     public bool webGLRightClickRotation = true;
 
 
@@ -19,6 +19,7 @@ public class CharController_Motor : MonoBehaviour
     {
         //LockCursor ();
         character = GetComponent<CharacterController>();
+        sensitivity = stats.sensitivity;
         if (Application.isEditor)
         {
             webGLRightClickRotation = false;
@@ -30,8 +31,8 @@ public class CharController_Motor : MonoBehaviour
 
     void Update()
     {
-        moveFB = Input.GetAxis("Horizontal") * speed;
-        moveLR = Input.GetAxis("Vertical") * speed;
+        moveFB = Input.GetAxis("Horizontal") * stats.speed;
+        moveLR = Input.GetAxis("Vertical") * stats.speed;
 
         rotX = Input.GetAxis("Mouse X") * sensitivity;
         rotY = Input.GetAxis("Mouse Y") * sensitivity;
