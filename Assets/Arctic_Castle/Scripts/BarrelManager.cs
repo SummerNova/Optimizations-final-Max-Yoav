@@ -9,6 +9,7 @@ public class BarrelManager : MonoBehaviour
     public int barrelCount = 5;
     private List<GameObject> allBarrels = new List<GameObject>();
     [SerializeField] List<Transform> spawnPoints = new List<Transform>();
+    GameObject barrel;
 
     void Start()
     {
@@ -25,13 +26,14 @@ public class BarrelManager : MonoBehaviour
         }
         for (int i = 0; i < barrelCount; i++)
         {
-            GameObject barrel = Instantiate(barrelPrefab, spawnPoints[i].position, Quaternion.identity);
+            barrel = Instantiate(barrelPrefab, spawnPoints[i].position, Quaternion.identity);
             //barrel.transform.position = new Vector3(Random.Range(-50f, 50f), Random.Range(0f, 10f), Random.Range(-50f, 50f));
             barrel.name = "Barrel_" + i;
             barrel.GetComponent<Rigidbody>().mass = Random.Range(0.5f, 0.6f);
             //barrel.AddComponent<BarrelBehavior>();
             allBarrels.Add(barrel);
         }
+        spawnPoints.Clear();
     }
 
     //void Update()

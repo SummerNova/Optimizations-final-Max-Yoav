@@ -13,7 +13,7 @@ public class CharController_Motor : MonoBehaviour
     float sensitivity;
     public bool webGLRightClickRotation = true;
 
-
+    Vector3 movement;
 
     void Start()
     {
@@ -37,7 +37,7 @@ public class CharController_Motor : MonoBehaviour
         rotX = Input.GetAxis("Mouse X") * sensitivity;
         rotY = Input.GetAxis("Mouse Y") * sensitivity;
 
-        Vector3 movement = new Vector3(moveFB, -9.8f, moveLR);
+        movement = new Vector3(moveFB, -9.8f, moveLR);
 
 
 
